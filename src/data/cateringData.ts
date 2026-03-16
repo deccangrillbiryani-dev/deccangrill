@@ -1,0 +1,175 @@
+export interface CateringCategory {
+  id: string;
+  category: string;
+  icon: string;
+  items: string[];
+}
+
+export const cateringData: CateringCategory[] = [
+  {
+    id: "veg-appetizers",
+    category: "Veg Appetizers (65s & Manchurian)",
+    icon: "🥗",
+    items: [
+      "ALU 65", "BABYCORN 65", "Baby Corn Manchurian", "Baby Corn Masakali",
+      "Chilli Pepper Corn", "Corn Pakoda", "Gobi 65", "Gobi Manchurian",
+      "Gobi Pepper Fry", "Gobi Masalakali", "Chilli Goby", "Panner Pakoda",
+      "Paneer 65", "Paneer Masakali", "Crispy Fried Paneer", "Paneer Manchurian",
+      "Chilli Paneer", "Paneer Majestic", "VEG Manchurian", "Veg 555",
+      "Malai Paneer Kebab", "Paneer Tikka Kebab", "Achari Paneer Kebab",
+    ],
+  },
+  {
+    id: "veg-snacks",
+    category: "Veg Fry Snacks",
+    icon: "🧆",
+    items: [
+      "Mirchi Bajji", "Bhendi Fry with Coconut & Cashew", "Cut Mirchi",
+      "Donda Fry with Coconut & Cashew", "Onion Mirchi Bajji", "Alu Fry",
+      "Veg Pakoda", "Aratikaaya Fry", "Onion Pakoda", "Kaakara Kaaya Fry",
+      "Spinach Pakoda", "Kanda Fry", "Potato Wedges", "Chaama Fry",
+      "Potato Bajji", "Mixed Veg Fry", "Ariti Bajji", "Cabbage Coconut",
+      "Punugulu", "Beans Coconut", "Mysore Bonda", "Carrot Coconut",
+      "Veg Spring Rolls", "Palak Spring Rolls", "Shangai Rolls",
+      "Corn Cheese Rolls", "Alu Bonda", "Veg Bonda", "PUNJABI SAMOSA",
+      "JALLI SAMOSA", "PANEER MUTTER SAMOSA", "COCKTAIL SAMOSA",
+      "Cashew Masala", "Cashew Pakodi", "Peanut Masala", "Peanut Pakodi",
+    ],
+  },
+  {
+    id: "continental",
+    category: "Continental Dishes",
+    icon: "🌮",
+    items: [
+      "Veg Franky", "Cheese Franky", "Stuffed Gobi Franky",
+      "Paneer Franky", "Veg Kofta Franky", "Corn Franky",
+    ],
+  },
+  {
+    id: "veg-south-indian",
+    category: "Veg — South Indian Curries",
+    icon: "🍛",
+    items: [
+      "Vegetable Khorma", "Bangaladumpa Khorma", "Gutti Vankaya",
+      "Tomato Vankaya Curry", "Vankaya Masala", "Vankai Kottimera",
+      "Chamagadda Pulusu", "Gummadikaya Pulusu", "Miriyala Bendakaya",
+      "Bendakaya Pulusu", "Raw Banana Fry", "Dondakaya Masala", "Avial",
+      "Munakkay Masala", "Tomato Munakkay", "Majjiga Pulusu",
+      "Beerakay Senagapappu", "Gutti Dondakay",
+    ],
+  },
+  {
+    id: "veg-fry",
+    category: "Veg Fry Items",
+    icon: "🥦",
+    items: [
+      "Bhendi Fry with Coconut & Cashew", "Donda Fry with Coconut & Cashew",
+      "Alu Fry", "Aratikaaya Fry", "Kaakara Kaaya Fry", "Kanda Fry",
+      "Chaama Fry", "Mixed Veg Fry", "Cabbage Coconut", "Beans Coconut",
+      "Carrot Coconut", "Vankay Fry", "Karap Vankay", "Vankay Pakodi",
+      "Bendakay Pakodi", "Dondakay Pakodi", "Beetroot Vepudu", "Cabbage Kotu",
+    ],
+  },
+  {
+    id: "veg-north-indian",
+    category: "Veg — North Indian Curries",
+    icon: "🧆",
+    items: [
+      "Palak Babycorn", "Babycorn Mushroom", "Babycorn Kaju", "Alu Methi",
+      "Alu Bhendi Masala", "Jeera Alu", "Dum Alu", "Alu Capsicum",
+      "Bhendi Dopyaza", "Chole Masala", "Saag Chole", "Bagara Baingan",
+      "Gobi Mutter", "Malai Methi Mutter", "Veg Jalfrezi", "Chatpata Subz",
+      "Capsicum Masala", "Navratan Khorma", "Phool Makhani", "Daal Tadka",
+      "Daal Makhini", "Veg Kofta Curry", "Paneer Chatpat", "Paneer Matar",
+      "Paneer Jalfrezi", "Paneer Butter Masala", "Paneer Methi Chaman",
+      "Paneer Pasanda", "Paneer Shahi Khorma", "Paneer Dopyaza", "Palak Paneer",
+      "Kadai Paneer", "Malai Kofta Curry",
+    ],
+  },
+  {
+    id: "rice",
+    category: "Rice Specials",
+    icon: "🍚",
+    items: [
+      "Mushroom Biryani", "Veg Biryani", "Jack Fruit Pulav", "Zafrani Pulav",
+      "Bagara Rice", "Jeera Mutter Pulav", "Ghee Pulav", "Kashmiri Pulav",
+      "Jeera Pulav", "Mutter Pulav", "Mushroom Pulav", "Bisibelli Bath",
+      "Lemon Rice", "Tomato Rice", "Gongura Rice", "Curd Rice", "Coconut Rice",
+      "Sambar Rice", "Karivepaku Rice", "Pudina Rice", "Capsicum Rice",
+      "Kaju Pulav", "Veg Fried Rice", "Chilli and Garlic Fried Rice",
+      "Vegetable Hakka Noodles", "Thai Veg Rice", "Thai Chilli Peanut Rice",
+      "Ulav Charu Veg Biryani", "Gongura Veg Biryani", "Gongura Veg Pulav",
+      "Avakai Veg Biryani", "Meal Maker Pulav (Soy Bean)", "Paneer Biryani",
+    ],
+  },
+  {
+    id: "dal-sambar",
+    category: "Daal / Sambar / Soups",
+    icon: "🥣",
+    items: [
+      "Palak Dal", "Tomato Dal", "Mango Dal", "Yellow Dal", "Kaddu Ka Dalcha",
+      "Gongura Pappu", "Mukkala Pulusu", "Mudda Pappu", "Sambar",
+      "Bendakaya Pulusu", "Gummadikaya Pulusu", "Drum Sticks Sambar",
+      "Ulava Charu with Cream", "Dal Fry", "Dal Makhani", "Plain Rasam",
+      "Lemon Rasam", "Spicy Rasam", "Mysore Rasam", "Tomato Rasam", "Dappalam",
+    ],
+  },
+  {
+    id: "non-veg-appetizers",
+    category: "Non-Veg Appetizers",
+    icon: "🍗",
+    items: [
+      "Chicken 65", "Chicken 555", "Chicken Manchurian", "Bell Pepper Chicken",
+      "Cashew Chicken", "Chilli Chicken", "Ginger Chicken", "Chicken Majestic",
+      "Chicken Pakoda", "Cantonese Chicken", "Pepper Chicken", "Chicken Lollipops",
+      "Tandoori Chicken", "Malai Chicken Kebab", "Chicken Tikka Kebab",
+      "Achari Chicken Kebab", "Apollo Fish", "Chilli Shrimp",
+    ],
+  },
+  {
+    id: "fish-shrimp",
+    category: "Fish & Shrimp Entrées",
+    icon: "🦐",
+    items: [
+      "Shrimp Masala", "Royyala Vepudu", "Fish Masala", "Fish Fry",
+      "Andhra Chepala Pulusu",
+    ],
+  },
+  {
+    id: "goat",
+    category: "Goat Entrées",
+    icon: "🥩",
+    items: [
+      "Goat Curry", "Goat Khorma", "Kadai Gosht", "Kheema Masala", "Kheema Fry",
+      "Andhra Goat Curry", "Mutton Masala", "Mutton Pepper Fry", "Gongura Mutton",
+      "Goat Vindaloo", "Spinach Goat", "Goat Chettinad", "Goat Fry",
+    ],
+  },
+  {
+    id: "chicken-egg",
+    category: "Chicken & Egg Entrées",
+    icon: "🍳",
+    items: [
+      "Andhra Chicken Curry", "Chicken Fry (Vepudu)", "Chicken Chettinad",
+      "Chicken Curry", "Chicken Khorma", "Chicken Karaikudi", "Chicken Mughlai",
+      "Chicken Vindaloo", "Chicken Jalfrezi", "Chicken Tikka Masala",
+      "Butter Chicken", "Green Chicken (Spinach)", "Kadai Chicken", "Methi Chicken",
+      "Natukodi Kura (Country Chk)", "Natukodi Fry (Country Chk)", "Gongura Chicken",
+      "Karivepaku Chicken", "Dosakay Chicken", "Chicken Masala",
+      "Mirapakay Chicken (Spicy)", "Achari Chicken", "Madras Chicken Curry",
+      "Egg Curry", "Egg Fry", "Egg Pulusu",
+    ],
+  },
+  {
+    id: "catering-biryanis",
+    category: "Biryanis",
+    icon: "🫕",
+    items: [
+      "Vegetable Dum Biryani", "Egg Biryani", "Chicken Dum Biryani",
+      "Goat Dum Biryani", "Spl Chicken Biryani (Boneless)", "Chicken Fry Biryani",
+      "Shrimp Biryani", "Natu Kodi Biryani", "Chettinad Chicken Biryani",
+      "Kheema Biryani (Goat)", "Ulav Charu Chicken Biryani", "Ulav Charu Goat Biryani",
+      "Ulav Charu Veg Biryani", "Mutton Fry Biryani",
+    ],
+  },
+];
