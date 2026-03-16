@@ -21,6 +21,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          dark: "hsl(var(--primary-dark))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -57,33 +58,80 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // ── Deccan Grill Brand Tokens ──
+        ivory: "hsl(38 64% 95%)",
+        charcoal: "hsl(28 36% 7%)",
+        gold: "hsl(40 61% 55%)",
+        amber: "hsl(32 83% 50%)",
+        "amber-dark": "hsl(25 87% 40%)",
+        espresso: "hsl(28 57% 10%)",
+        taupe: "hsl(30 18% 44%)",
+      },
+      fontFamily: {
+        display: ["Playfair Display", "serif"],
+        subhead: ["Cormorant Garamond", "serif"],
+        body: ["Inter", "sans-serif"],
+        label: ["Cinzel Decorative", "cursive"],
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+      },
+      backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-amber": "var(--gradient-amber)",
+        "gradient-gold": "var(--gradient-gold)",
+        "gradient-card-overlay": "var(--gradient-card-overlay)",
+      },
+      boxShadow: {
+        card: "var(--shadow-card)",
+        gold: "var(--shadow-gold)",
+        amber: "var(--shadow-amber)",
+        dark: "var(--shadow-dark)",
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" },
+        },
+        "fade-in-up": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "shimmer-slide": {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+        "float-particle": {
+          "0%": { transform: "translateY(0) translateX(0)", opacity: "0" },
+          "20%": { opacity: "0.6" },
+          "80%": { opacity: "0.2" },
+          "100%": { transform: "translateY(-180px) translateX(20px)", opacity: "0" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.6" },
+        },
+        "slide-up": {
+          from: { transform: "translateY(100%)", opacity: "0" },
+          to: { transform: "translateY(0)", opacity: "1" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        "shimmer-slide": "shimmer-slide 3s linear infinite",
+        "float-particle": "float-particle 4s ease-in infinite",
+        "pulse-glow": "pulse-glow 2s cubic-bezier(0.4,0,0.6,1) infinite",
+        "slide-up": "slide-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
       },
     },
   },

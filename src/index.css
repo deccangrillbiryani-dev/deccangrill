@@ -2,95 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ═══════════════════════════════════════════════════════
+   DECCAN GRILL PLANO — Design System
+   All colors MUST be HSL. No raw hex in components.
+═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* ── Surfaces ── */
+    --background: 38 64% 95%;           /* Warm Ivory #FAF3E8 */
+    --background-dark: 28 36% 7%;       /* Charcoal Black #1A1208 */
+    --surface: 38 80% 97%;              /* Warm White #FFF8F0 */
+    --foreground: 28 57% 10%;           /* Rich Espresso #2C1A08 */
+    --foreground-muted: 30 18% 44%;     /* Muted Taupe #8B7355 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* ── Primary / Brand ── */
+    --primary: 32 83% 50%;              /* Saffron Orange #E8851A */
+    --primary-dark: 25 87% 40%;         /* Deep Amber #C4640A */
+    --primary-foreground: 38 64% 95%;  /* Ivory on orange */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* ── Gold ── */
+    --gold: 40 61% 55%;                 /* Antique Gold #D4A843 */
+    --gold-foreground: 28 36% 7%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* ── Semantic tokens (shadcn compat) ── */
+    --card: 38 80% 97%;
+    --card-foreground: 28 57% 10%;
+    --popover: 38 80% 97%;
+    --popover-foreground: 28 57% 10%;
+    --secondary: 38 50% 90%;
+    --secondary-foreground: 28 57% 10%;
+    --muted: 35 30% 92%;
+    --muted-foreground: 30 18% 44%;
+    --accent: 32 83% 50%;
+    --accent-foreground: 38 64% 95%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 35 30% 85%;
+    --input: 35 30% 88%;
+    --ring: 32 83% 50%;
+    --radius: 0.75rem;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* ── Sidebar (keep defaults) ── */
+    --sidebar-background: 38 64% 95%;
+    --sidebar-foreground: 28 57% 10%;
+    --sidebar-primary: 32 83% 50%;
+    --sidebar-primary-foreground: 38 64% 95%;
+    --sidebar-accent: 35 30% 92%;
+    --sidebar-accent-foreground: 28 57% 10%;
+    --sidebar-border: 35 30% 85%;
+    --sidebar-ring: 32 83% 50%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* ── Gradients ── */
+    --gradient-hero: linear-gradient(160deg, hsl(28 36% 7% / 0.9) 0%, hsl(25 87% 40% / 0.15) 100%);
+    --gradient-amber: linear-gradient(135deg, hsl(25 87% 40%) 0%, hsl(32 83% 50%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(40 61% 55%) 0%, hsl(45 72% 65%) 100%);
+    --gradient-card-overlay: linear-gradient(to top, hsl(28 36% 7% / 0.95) 0%, hsl(28 36% 7% / 0.3) 60%, transparent 100%);
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* ── Shadows ── */
+    --shadow-card: 0 20px 50px -12px hsl(28 36% 7% / 0.15);
+    --shadow-gold: 0 8px 32px -4px hsl(40 61% 55% / 0.35);
+    --shadow-amber: 0 8px 32px -4px hsl(32 83% 50% / 0.35);
+    --shadow-dark: 0 20px 60px -12px hsl(28 36% 7% / 0.5);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 28 36% 7%;
+    --foreground: 38 64% 95%;
+    --card: 28 36% 10%;
+    --card-foreground: 38 64% 95%;
+    --popover: 28 36% 10%;
+    --popover-foreground: 38 64% 95%;
+    --primary: 32 83% 50%;
+    --primary-foreground: 28 36% 7%;
+    --secondary: 28 30% 16%;
+    --secondary-foreground: 38 64% 95%;
+    --muted: 28 30% 14%;
+    --muted-foreground: 30 18% 60%;
+    --accent: 32 83% 50%;
+    --accent-foreground: 28 36% 7%;
+    --border: 28 30% 18%;
+    --input: 28 30% 18%;
+    --ring: 32 83% 50%;
   }
 }
 
@@ -99,7 +94,217 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   TYPOGRAPHY UTILITIES
+═══════════════════════════════════════════════════════ */
+@layer components {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+  .font-subhead {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+  .font-label {
+    font-family: 'Cinzel Decorative', cursive;
+  }
+
+  /* ── Section Headings ── */
+  .section-title {
+    @apply font-display text-4xl md:text-5xl font-bold;
+    letter-spacing: -0.03em;
+    color: hsl(var(--foreground));
+  }
+  .section-title-light {
+    @apply font-display text-4xl md:text-5xl font-bold;
+    letter-spacing: -0.03em;
+    color: hsl(var(--gold));
+  }
+  .section-label {
+    @apply font-label text-xs tracking-widest uppercase;
+    color: hsl(var(--primary));
+  }
+  .section-label-gold {
+    @apply font-label text-xs tracking-widest uppercase;
+    color: hsl(var(--gold));
+  }
+
+  /* ── Gold Underline ── */
+  .gold-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .gold-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--primary)));
+    border-radius: 2px;
+  }
+
+  /* ── Geometric Watermark Overlay ── */
+  .geometric-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  .geometric-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A843' fill-opacity='0.06'%3E%3Cpath d='M40 0L80 40L40 80L0 40z'/%3E%3Cpath d='M40 10L70 40L40 70L10 40z'/%3E%3Cpath d='M40 20L60 40L40 60L20 40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Gold Shimmer Button ── */
+  .btn-primary {
+    @apply relative overflow-hidden inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-body font-semibold text-sm tracking-wide transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-dark)) 100%);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-amber);
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+  .btn-primary:hover::after {
+    left: 125%;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px -8px hsl(var(--primary) / 0.5);
+  }
+
+  .btn-ghost-gold {
+    @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-body font-semibold text-sm tracking-wide transition-all duration-300;
+    border: 1.5px solid hsl(var(--gold));
+    color: hsl(var(--gold));
+    background: transparent;
+  }
+  .btn-ghost-gold:hover {
+    background: hsl(var(--gold) / 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* ── Card ── */
+  .dish-card {
+    @apply relative overflow-hidden rounded-2xl cursor-pointer;
+    background: hsl(var(--card));
+    box-shadow: var(--shadow-card);
+    transform-style: preserve-3d;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  }
+  .dish-card:hover {
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* ── Gold Shimmer Divider ── */
+  .shimmer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), hsl(var(--primary)), hsl(var(--gold)), transparent);
+    opacity: 0.4;
+  }
+
+  /* ── Glassmorphism Navbar ── */
+  .navbar-glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: hsl(var(--background-dark) / 0.75);
+    border-bottom: 1px solid hsl(var(--gold) / 0.15);
+  }
+
+  /* ── Open Late Badge ── */
+  .open-late-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs uppercase tracking-widest font-semibold;
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.5);
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* ── Scroll reveal base ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════════════ */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.4; }
+  100% { transform: translateY(-200px) translateX(var(--drift)); opacity: 0; }
+}
+
+@keyframes shimmer-slide {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--muted)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--gold) / 0.5); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--gold)); }
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
