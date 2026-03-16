@@ -270,7 +270,6 @@ export default function CateringPage() {
                         style={{
                           background: "hsl(var(--muted))", color: "hsl(var(--foreground))",
                           border: "1px solid hsl(var(--border))",
-                          ringColor: "hsl(var(--primary))",
                         }} />
                     </div>
                   ))}
