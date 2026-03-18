@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Added useNavigate
+import { Link, useLocation, useNavigate } from "react-router-dom"; 
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 
@@ -15,7 +15,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -25,19 +25,26 @@ export default function Navbar() {
 
   const handleAnchorClick = (href: string) => {
     setMobileOpen(false);
-    const [path, hash] = href.split("#");
+    
+    // Check if the link is an anchor link (contains #)
+    if (href.includes("#")) {
+      const [path, hash] = href.split("#");
 
-    // Case 1: If we are already on the home page and it's an anchor link
-    if (location.pathname === "/" && hash) {
-      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
-    } 
-    // Case 2: If we are on a different page, go home first
-    else if (hash) {
-      navigate("/"); // Navigate to home
-      // Wait for navigation to complete then scroll
-      setTimeout(() => {
+      // If we are already on the home page
+      if (location.pathname === "/") {
         document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
-      }, 500); 
+      } 
+      // If we are on /menu or /catering, go home first, then scroll
+      else {
+        navigate("/");
+        setTimeout(() => {
+          document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+        }, 500); 
+      }
+    } 
+    // FIX: Add logic for regular pages (Menu, Catering, etc.)
+    else {
+      navigate(href);
     }
   };
 
@@ -56,7 +63,6 @@ export default function Navbar() {
         }`}
       >
         <div className="container mx-auto flex items-center justify-between px-4 md:px-8">
-          {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img 
               src="/logo.png" 
@@ -65,7 +71,6 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Nav Links */}
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.label}>
@@ -83,7 +88,7 @@ export default function Navbar() {
                   <Link
                     to={link.href}
                     className="font-body text-sm font-medium transition-colors duration-200 relative group"
-                    style={{ color: location.pathname === link.href ? "hsl(var(--primary))" : desktopTextColor }}
+                    style={{ color: location.pathname === link.href ? "#D97706" : desktopTextColor }}
                   >
                     {link.label}
                     <span className={`absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"}`}
@@ -94,7 +99,6 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Phone */}
           <a
             href="tel:+14695739471"
             className="hidden md:flex items-center gap-2 font-body text-sm font-medium transition-all duration-200 hover:scale-105"
@@ -104,7 +108,6 @@ export default function Navbar() {
             +1 (469) 573-9471
           </a>
 
-          {/* Mobile Toggle */}
           <button
             className="md:hidden p-2 rounded-lg transition-colors"
             style={{ color: isDarkBg ? "hsl(var(--gold))" : "#D97706" }}
@@ -115,7 +118,6 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -138,7 +140,7 @@ export default function Navbar() {
                   <button
                     onClick={() => handleAnchorClick(link.href)}
                     className="font-display text-3xl font-bold text-left"
-                    style={{ color: (location.pathname === link.href && !link.href.includes("#")) ? "hsl(var(--gold))" : "hsl(var(--primary-foreground))" }}
+                    style={{ color: (location.pathname === link.href) ? "#D97706" : "white" }}
                   >
                     {link.label}
                   </button>
