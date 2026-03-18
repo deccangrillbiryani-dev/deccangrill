@@ -2,6 +2,7 @@ export interface CateringCategory {
   id: string;
   category: string;
   icon: string;
+  image: string; // ADDED: Directly map the image to the category
   items: string[];
 }
 
@@ -10,6 +11,7 @@ export const cateringData: CateringCategory[] = [
     id: "veg-appetizers",
     category: "Veg Appetizers (65s & Manchurian)",
     icon: "🥗",
+    image: "/images/veg_ap.jpg",
     items: [
       "ALU 65", "BABYCORN 65", "Baby Corn Manchurian", "Baby Corn Masakali",
       "Chilli Pepper Corn", "Corn Pakoda", "Gobi 65", "Gobi Manchurian",
@@ -23,6 +25,7 @@ export const cateringData: CateringCategory[] = [
     id: "veg-snacks",
     category: "Veg Fry Snacks",
     icon: "🧆",
+    image: "/images/vegfrysnacks.jpg",
     items: [
       "Mirchi Bajji", "Bhendi Fry with Coconut & Cashew", "Cut Mirchi",
       "Donda Fry with Coconut & Cashew", "Onion Mirchi Bajji", "Alu Fry",
@@ -40,6 +43,7 @@ export const cateringData: CateringCategory[] = [
     id: "continental",
     category: "Continental Dishes",
     icon: "🌮",
+    image: "/images/franky.jpg",
     items: [
       "Veg Franky", "Cheese Franky", "Stuffed Gobi Franky",
       "Paneer Franky", "Veg Kofta Franky", "Corn Franky",
@@ -49,6 +53,7 @@ export const cateringData: CateringCategory[] = [
     id: "veg-south-indian",
     category: "Veg — South Indian Curries",
     icon: "🍛",
+    image: "/images/vegkhorma.jpg",
     items: [
       "Vegetable Khorma", "Bangaladumpa Khorma", "Gutti Vankaya",
       "Tomato Vankaya Curry", "Vankaya Masala", "Vankai Kottimera",
@@ -62,6 +67,7 @@ export const cateringData: CateringCategory[] = [
     id: "veg-fry",
     category: "Veg Fry Items",
     icon: "🥦",
+    image: "/images/aloofry.jpg",
     items: [
       "Bhendi Fry with Coconut & Cashew", "Donda Fry with Coconut & Cashew",
       "Alu Fry", "Aratikaaya Fry", "Kaakara Kaaya Fry", "Kanda Fry",
@@ -74,6 +80,7 @@ export const cateringData: CateringCategory[] = [
     id: "veg-north-indian",
     category: "Veg — North Indian Curries",
     icon: "🧆",
+    image: "/images/chole.jpg",
     items: [
       "Palak Babycorn", "Babycorn Mushroom", "Babycorn Kaju", "Alu Methi",
       "Alu Bhendi Masala", "Jeera Alu", "Dum Alu", "Alu Capsicum",
@@ -90,6 +97,7 @@ export const cateringData: CateringCategory[] = [
     id: "rice",
     category: "Rice Specials",
     icon: "🍚",
+    image: "/images/bagara.jpg",
     items: [
       "Mushroom Biryani", "Veg Biryani", "Jack Fruit Pulav", "Zafrani Pulav",
       "Bagara Rice", "Jeera Mutter Pulav", "Ghee Pulav", "Kashmiri Pulav",
@@ -106,6 +114,7 @@ export const cateringData: CateringCategory[] = [
     id: "dal-sambar",
     category: "Daal / Sambar / Soups",
     icon: "🥣",
+    image: "/images/dal.jpg",
     items: [
       "Palak Dal", "Tomato Dal", "Mango Dal", "Yellow Dal", "Kaddu Ka Dalcha",
       "Gongura Pappu", "Mukkala Pulusu", "Mudda Pappu", "Sambar",
@@ -118,6 +127,7 @@ export const cateringData: CateringCategory[] = [
     id: "non-veg-appetizers",
     category: "Non-Veg Appetizers",
     icon: "🍗",
+    image: "/images/nonvegap.jpg",
     items: [
       "Chicken 65", "Chicken 555", "Chicken Manchurian", "Bell Pepper Chicken",
       "Cashew Chicken", "Chilli Chicken", "Ginger Chicken", "Chicken Majestic",
@@ -130,6 +140,7 @@ export const cateringData: CateringCategory[] = [
     id: "fish-shrimp",
     category: "Fish & Shrimp Entrées",
     icon: "🦐",
+    image: "/images/fish.jpg",
     items: [
       "Shrimp Masala", "Royyala Vepudu", "Fish Masala", "Fish Fry",
       "Andhra Chepala Pulusu",
@@ -139,6 +150,7 @@ export const cateringData: CateringCategory[] = [
     id: "goat",
     category: "Goat Entrées",
     icon: "🥩",
+    image: "/images/goat.jpg",
     items: [
       "Goat Curry", "Goat Khorma", "Kadai Gosht", "Kheema Masala", "Kheema Fry",
       "Andhra Goat Curry", "Mutton Masala", "Mutton Pepper Fry", "Gongura Mutton",
@@ -149,6 +161,7 @@ export const cateringData: CateringCategory[] = [
     id: "chicken-egg",
     category: "Chicken & Egg Entrées",
     icon: "🍳",
+    image: "/images/chicken.jpg",
     items: [
       "Andhra Chicken Curry", "Chicken Fry (Vepudu)", "Chicken Chettinad",
       "Chicken Curry", "Chicken Khorma", "Chicken Karaikudi", "Chicken Mughlai",
@@ -164,6 +177,7 @@ export const cateringData: CateringCategory[] = [
     id: "catering-biryanis",
     category: "Biryanis",
     icon: "🫕",
+    image: "/images/biryani.jpg",
     items: [
       "Vegetable Dum Biryani", "Egg Biryani", "Chicken Dum Biryani",
       "Goat Dum Biryani", "Spl Chicken Biryani (Boneless)", "Chicken Fry Biryani",

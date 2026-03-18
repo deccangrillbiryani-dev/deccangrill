@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom"; // Added useNavigate
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Flame } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -15,6 +15,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -24,13 +25,25 @@ export default function Navbar() {
 
   const handleAnchorClick = (href: string) => {
     setMobileOpen(false);
-    if (href.includes("#")) {
-      const id = href.split("#")[1];
+    const [path, hash] = href.split("#");
+
+    // Case 1: If we are already on the home page and it's an anchor link
+    if (location.pathname === "/" && hash) {
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+    } 
+    // Case 2: If we are on a different page, go home first
+    else if (hash) {
+      navigate("/"); // Navigate to home
+      // Wait for navigation to complete then scroll
       setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      }, 500); 
     }
   };
+
+  const isHomePage = location.pathname === "/";
+  const isDarkBg = scrolled || isHomePage;
+  const desktopTextColor = isDarkBg ? "hsl(38 64% 95%)" : "#1F2937"; 
 
   return (
     <>
@@ -44,25 +57,12 @@ export default function Navbar() {
       >
         <div className="container mx-auto flex items-center justify-between px-4 md:px-8">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-full flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)))" }}>
-              <Flame className="w-5 h-5 text-white" />
-            </div>
-            <div className="leading-none">
-              <div className="font-label text-xs tracking-[0.18em] uppercase"
-                style={{ color: "hsl(var(--primary))" }}>
-                DECCAN
-              </div>
-              <div className="font-display font-bold text-lg leading-none"
-                style={{
-                  background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)))",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}>
-                GRILL
-              </div>
-            </div>
+          <Link to="/" className="flex items-center group">
+            <img 
+              src="/logo.png" 
+              alt="Deccan Grill Logo" 
+              className="h-16 w-16 rounded-full object-cover transition-transform duration-300 group-hover:scale-105 bg-white shadow-sm" 
+            />
           </Link>
 
           {/* Desktop Nav Links */}
@@ -73,7 +73,7 @@ export default function Navbar() {
                   <button
                     onClick={() => handleAnchorClick(link.href)}
                     className="font-body text-sm font-medium transition-colors duration-200 relative group"
-                    style={{ color: "hsl(var(--primary-foreground))" }}
+                    style={{ color: desktopTextColor }}
                   >
                     {link.label}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
@@ -83,7 +83,7 @@ export default function Navbar() {
                   <Link
                     to={link.href}
                     className="font-body text-sm font-medium transition-colors duration-200 relative group"
-                    style={{ color: location.pathname === link.href ? "hsl(var(--primary))" : "hsl(var(--primary-foreground))" }}
+                    style={{ color: location.pathname === link.href ? "hsl(var(--primary))" : desktopTextColor }}
                   >
                     {link.label}
                     <span className={`absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"}`}
@@ -98,7 +98,7 @@ export default function Navbar() {
           <a
             href="tel:+14695739471"
             className="hidden md:flex items-center gap-2 font-body text-sm font-medium transition-all duration-200 hover:scale-105"
-            style={{ color: "hsl(var(--gold))" }}
+            style={{ color: isDarkBg ? "hsl(var(--gold))" : "#D97706" }}
           >
             <Phone className="w-4 h-4" />
             +1 (469) 573-9471
@@ -107,7 +107,7 @@ export default function Navbar() {
           {/* Mobile Toggle */}
           <button
             className="md:hidden p-2 rounded-lg transition-colors"
-            style={{ color: "hsl(var(--gold))" }}
+            style={{ color: isDarkBg ? "hsl(var(--gold))" : "#D97706" }}
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -124,7 +124,7 @@ export default function Navbar() {
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="fixed inset-0 z-40 flex flex-col pt-20 pb-8 px-8"
-            style={{ background: "hsl(var(--background-dark))" }}
+            style={{ background: "hsl(var(--background-dark))" }} 
           >
             <div className="shimmer-divider mb-8" />
             <ul className="flex flex-col gap-6">
@@ -135,24 +135,13 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.08 }}
                 >
-                  {link.href.includes("#") ? (
-                    <button
-                      onClick={() => handleAnchorClick(link.href)}
-                      className="font-display text-3xl font-bold"
-                      style={{ color: "hsl(var(--primary-foreground))" }}
-                    >
-                      {link.label}
-                    </button>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="font-display text-3xl font-bold"
-                      style={{ color: location.pathname === link.href ? "hsl(var(--gold))" : "hsl(var(--primary-foreground))" }}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
+                  <button
+                    onClick={() => handleAnchorClick(link.href)}
+                    className="font-display text-3xl font-bold text-left"
+                    style={{ color: (location.pathname === link.href && !link.href.includes("#")) ? "hsl(var(--gold))" : "hsl(var(--primary-foreground))" }}
+                  >
+                    {link.label}
+                  </button>
                 </motion.li>
               ))}
             </ul>
