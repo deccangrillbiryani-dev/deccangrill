@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, X, Send, CheckCircle, User, PhoneCall, Calendar, Clock, Tag, AlignLeft, Mail, ConciergeBell } from "lucide-react";
+import { ChevronDown, X, Send, CheckCircle, User, PhoneCall, Calendar, Clock, Tag, AlignLeft, Mail, ConciergeBell, Trash2 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,11 +18,28 @@ const occasions = [
   { image: "/cultural.jpg", label: "Cultural Events" },
 ];
 
+const categoryImages: Record<string, string> = {
+  "Veg Appetizers": "/images/veg_ap.jpg",
+  "Veg Fry / Snacks": "/images/vegfrysnacks.jpg",
+  "Franky": "/images/franky.jpg",
+  "Veg Khorma": "/images/vegkhorma.jpg",
+  "Aloo Fry": "/images/aloofry.jpg",
+  "Chole": "/images/chole.jpg",
+  "Bagara Baingan": "/images/bagara.jpg",
+  "Dal": "/images/dal.jpg",
+  "Non-Veg Appetizers": "/images/nonvegap.jpg",
+  "Fish": "/images/fish.jpg",
+  "Goat": "/images/goat.jpg",
+  "Chicken": "/images/chicken.jpg",
+  "Biryani": "/images/biryani.jpg",
+};
+
 type SelectedItems = Record<string, Set<string>>;
 
 export default function CateringPage() {
   const [activeCategoryModal, setActiveCategoryModal] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<SelectedItems>({});
+  const [showDrawer, setShowDrawer] = useState(false); // NEW: Drawer State
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -46,8 +63,21 @@ export default function CateringPage() {
     });
   };
 
+  // NEW: Remove single item from cart
+  const removeItem = (catId: string, item: string) => {
+    setSelectedItems(prev => {
+      const catSet = new Set(prev[catId]);
+      catSet.delete(item);
+      return { ...prev, [catId]: catSet };
+    });
+  };
+
+  // NEW: Clear entire cart
+  const clearCart = () => {
+    setSelectedItems({});
+  };
+
   const totalSelected = Object.values(selectedItems).reduce((acc, s) => acc + s.size, 0);
-  const totalCategories = Object.values(selectedItems).filter(s => s.size > 0).length;
 
   const selectedSummary = Object.entries(selectedItems)
     .filter(([, s]) => s.size > 0)
@@ -91,7 +121,7 @@ export default function CateringPage() {
   };
 
   return (
-    <div className="min-h-screen pb-12" style={{ backgroundColor: "#FAF3E0", fontFamily: "'Inter', 'SF Pro Display', sans-serif" }}>
+    <div className="flex flex-col min-h-screen" style={{ backgroundColor: "#FAF3E0", fontFamily: "'Inter', 'SF Pro Display', sans-serif" }}>
       <Navbar />
 
       {/* Hero Header */}
@@ -150,7 +180,6 @@ export default function CateringPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
             {cateringData.map((cat, i) => {
               const selectedCount = selectedItems[cat.id]?.size || 0;
-              // UPDATED: Now pulls the image directly from the cateringData object!
               const bgImage = cat.image || "https://images.unsplash.com/photo-1544025162-83b0a70f2abf?w=500&q=80";
               
               return (
@@ -243,29 +272,124 @@ export default function CateringPage() {
         )}
       </AnimatePresence>
 
-      {/* LUXURY FLOATING ACTION BUTTON (Cart Style) */}
-      <AnimatePresence>
-        {totalSelected > 0 && (
-          <motion.button 
-            initial={{ scale: 0, opacity: 0 }} 
-            animate={{ scale: 1, opacity: 1 }} 
-            exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setShowModal(true)} 
-            className="fixed bottom-6 right-6 z-40 flex items-center justify-center gap-3 p-4 md:px-6 md:py-4 rounded-full shadow-2xl"
-            style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)", color: "#FFFFFF", boxShadow: "0 10px 25px rgba(217, 119, 6, 0.4)" }}
-          >
-            <div className="relative flex items-center justify-center">
-              <ConciergeBell className="w-7 h-7 md:w-5 md:h-5" />
-              <span className="absolute -top-2 -right-2 md:hidden flex items-center justify-center w-5 h-5 rounded-full bg-white text-[#D97706] text-[11px] font-bold shadow-sm">
+      {/* LUXURY FLOATING ACTION BUTTON (Always Visible) */}
+      <motion.button 
+        initial={{ scale: 0, opacity: 0 }} 
+        animate={{ scale: 1, opacity: 1 }} 
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setShowDrawer(true)} 
+        className="fixed bottom-6 right-6 z-40 flex items-center justify-center gap-3 p-4 md:px-6 md:py-4 rounded-full shadow-2xl"
+        style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)", color: "#FFFFFF", boxShadow: "0 10px 25px rgba(217, 119, 6, 0.4)" }}
+      >
+        <div className="relative flex items-center justify-center">
+          <ConciergeBell className="w-7 h-7 md:w-5 md:h-5" />
+          <AnimatePresence>
+            {totalSelected > 0 && (
+              <motion.span 
+                initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}
+                className="absolute -top-2 -right-2 md:hidden flex items-center justify-center w-5 h-5 rounded-full bg-white text-[#D97706] text-[11px] font-bold shadow-sm"
+              >
                 {totalSelected}
-              </span>
-            </div>
-            <span className="hidden md:block text-sm font-bold tracking-wide">
-              Request Quote ({totalSelected})
-            </span>
-          </motion.button>
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </div>
+        <span className="hidden md:block text-sm font-bold tracking-wide">
+          View Menu {totalSelected > 0 ? `(${totalSelected})` : ""}
+        </span>
+      </motion.button>
+
+      {/* CART DRAWER */}
+      <AnimatePresence>
+        {showDrawer && (
+          <>
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50"
+              style={{ background: "rgba(31, 41, 55, 0.6)", backdropFilter: "blur(4px)" }}
+              onClick={() => setShowDrawer(false)}
+            />
+            
+            {/* Side Drawer */}
+            <motion.div 
+              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-full max-w-md z-50 flex flex-col shadow-2xl"
+              style={{ background: "#FFFFFF" }}
+            >
+              {/* Drawer Header */}
+              <div className="p-6 border-b flex items-center justify-between" style={{ borderColor: "rgba(31, 41, 55, 0.05)" }}>
+                <div>
+                  <h2 className="font-bold text-xl tracking-tight" style={{ color: "#1F2937" }}>Your Catering Menu</h2>
+                  <p className="text-sm mt-0.5" style={{ color: "#D97706" }}>{totalSelected} items selected</p>
+                </div>
+                <button onClick={() => setShowDrawer(false)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
+                  <X className="w-5 h-5" style={{ color: "#7F5539" }} />
+                </button>
+              </div>
+
+              {/* Drawer Body (Items) */}
+              <div className="flex-1 overflow-y-auto p-6">
+                {totalSelected === 0 ? (
+                  <div className="h-full flex flex-col items-center justify-center text-center opacity-60">
+                    <ConciergeBell className="w-16 h-16 mb-4" style={{ color: "#7F5539" }} />
+                    <p className="font-medium" style={{ color: "#1F2937" }}>Your menu is empty.</p>
+                    <p className="text-sm mt-2 max-w-[200px]" style={{ color: "#7F5539" }}>Close this drawer and select items from our categories to build your menu.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {cateringData.map(cat => {
+                      const itemsInCat = selectedItems[cat.id];
+                      if (!itemsInCat || itemsInCat.size === 0) return null;
+                      
+                      return (
+                        <div key={cat.id}>
+                          <h3 className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "#7F5539" }}>{cat.category}</h3>
+                          <ul className="space-y-2">
+                            {Array.from(itemsInCat).map(item => (
+                              <li key={item} className="flex items-center justify-between p-3 rounded-xl" style={{ background: "#F9F6F0" }}>
+                                <span className="text-sm font-medium" style={{ color: "#1F2937" }}>{item}</span>
+                                <button onClick={() => removeItem(cat.id, item)} className="p-1.5 rounded-md hover:bg-white text-gray-400 hover:text-red-500 transition-colors">
+                                  <X size={16} />
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Drawer Footer */}
+              <div className="p-6 border-t" style={{ borderColor: "rgba(31, 41, 55, 0.05)", background: "#FAF3E0" }}>
+                <div className="flex gap-3">
+                  <button 
+                    onClick={clearCart}
+                    disabled={totalSelected === 0}
+                    className="flex items-center justify-center gap-2 px-4 py-4 rounded-xl font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ background: "rgba(31, 41, 55, 0.05)", color: "#1F2937" }}
+                  >
+                    <Trash2 size={18} />
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setShowDrawer(false);
+                      setShowModal(true);
+                    }}
+                    disabled={totalSelected === 0}
+                    className="flex-1 flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white transition-transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    style={{ background: "linear-gradient(135deg, #F59E0B, #D97706)", boxShadow: "0 10px 20px rgba(217,119,6,0.25)" }}
+                  >
+                    Proceed to Request
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
@@ -371,6 +495,7 @@ export default function CateringPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
       <Footer />
     </div>
   );

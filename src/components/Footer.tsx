@@ -6,7 +6,7 @@ const hours = [
   { day: "Mon - Thu", time: "11:00 AM – 10:00 PM" },
   { day: "Friday", time: "11:00 AM – 3:00 AM" },
   { day: "Saturday", time: "11:30 AM – 3:00 AM" },
-  { day: "Sunday", time: "11:00 AM – 10:00 PM" },
+  { day: "Sunday", time: "11:30 AM – 10:00 PM" },
 ];
 
 export default function Footer() {

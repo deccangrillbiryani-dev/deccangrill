@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { Moon, Sparkles } from "lucide-react";
 
 // The new dynamic image data
 const heroItems = [
@@ -34,8 +34,6 @@ function SteamParticles() {
   );
 }
 
-const words = ["Where", "Every", "Bite", "Tells", "a", "Story"];
-
 export default function Hero() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -61,7 +59,6 @@ export default function Hero() {
   }, []);
 
   return (
-    // FIX: Removed max-w-[100vw] and locked to w-full overflow-hidden to stop the white gap
     <section className="relative min-h-svh flex items-center w-full overflow-hidden">
       {/* Cinematic Parallax BG Slider */}
       <div ref={parallaxRef} className="absolute inset-0 will-change-transform" style={{ top: "-5%", height: "110%" }}>
@@ -92,69 +89,135 @@ export default function Hero() {
       <div className="absolute inset-0"
         style={{ background: "linear-gradient(160deg, hsl(28 36% 7% / 0.95) 0%, hsl(28 36% 7% / 0.80) 50%, hsl(28 36% 7% / 0.60) 100%)" }} />
 
-      {/* Steam Particles */}
+      {/* Midnight Biryanis Badge - DESKTOP ONLY */}
+      <motion.div 
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+        className="absolute top-24 right-8 z-20 hidden md:block"
+      >
+        <div className="relative group cursor-default">
+          <div className="absolute inset-0 bg-[#D97706]/20 rounded-2xl blur-xl" />
+          <motion.div 
+            animate={{ y: [0, -12, 0] }}
+            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+            className="relative bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl flex items-center gap-4"
+          >
+            <div className="bg-[#D97706]/20 p-2 rounded-xl">
+              <Moon size={24} className="text-[#D4A843]" />
+            </div>
+            <div>
+              <p className="text-[10px] font-bold tracking-[0.2em] text-[#D4A843] uppercase">Midnight Biryanis</p>
+              <p className="text-white text-xs font-medium">Fri - Sat: 10PM – 3AM</p>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+
       <SteamParticles />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 md:px-8 pt-24">
         <div className="max-w-4xl">
+          
+          {/* Haleem 365 Days - ABOVE LABEL */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="flex items-center gap-2 mb-2"
+          >
+            <Sparkles size={14} className="text-[#D4A843]" />
+            <span className="text-[#FAF3E0] text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase">
+              Haleem 365 Days
+            </span>
+          </motion.div>
+
           {/* Label */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-            className="section-label-gold mb-6 flex items-center gap-3"
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mb-6 flex items-center gap-3 text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase text-[#D4A843]"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
           >
             Authentic Hyderabadi Cuisine · Plano, TX
           </motion.div>
 
-          {/* Hero Headline — FIX: Added flex-wrap so the words don't push the screen wider on small devices */}
-          <h1 className="font-display font-bold mb-6 leading-none flex flex-wrap"
+          {/* Hero Headline - Balanced Typography */}
+          <h1 className="font-display font-bold mb-6 leading-[1.1] md:leading-none flex flex-col"
             style={{ fontSize: "clamp(2.8rem, 8vw, 5.5rem)", letterSpacing: "-0.03em", color: "hsl(38 64% 95%)" }}>
-            {words.map((word, i) => (
+            <div className="flex flex-wrap">
+              {["Where", "every", "bite"].map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1, duration: 0.6 }}
+                  className="inline-block mr-[0.25em]"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center">
+               {["tells", "a"].map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + i * 0.1, duration: 0.6 }}
+                  className="inline-block mr-[0.25em]"
+                >
+                  {word}
+                </motion.span>
+              ))}
               <motion.span
-                key={i}
                 initial={{ opacity: 0, y: 40 }}
-                animate={{ 
-                  opacity: 1, 
-                  y: 0,
-                  textShadow: ["0px 0px 0px rgba(255,255,255,0)", "0px 0px 20px rgba(255,255,255,0.4)", "0px 0px 0px rgba(255,255,255,0)"]
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.8 }}
+                className="inline-block"
+                style={{
+                  background: "linear-gradient(135deg, hsl(var(--gold)), hsl(var(--primary)))",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  filter: "drop-shadow(0px 0px 12px rgba(212,184,149,0.3))" 
                 }}
-                transition={{ 
-                  y: { delay: 0.2 + i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  opacity: { delay: 0.2 + i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  textShadow: { delay: 1.5 + (i * 0.2), duration: 4, repeat: Infinity, ease: "easeInOut" }
-                }}
-                className="inline-block mr-[0.25em]"
               >
-                {word === "Story" ? (
-                  <span style={{
-                    background: "linear-gradient(135deg, hsl(var(--gold)), hsl(var(--primary)))",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    filter: "drop-shadow(0px 0px 12px rgba(212,184,149,0.5))" 
-                  }}>{word}</span>
-                ) : word}
+                Story
               </motion.span>
-            ))}
+            </div>
           </h1>
 
           {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.6 }}
-            className="font-subhead text-xl md:text-2xl italic mb-10"
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="font-subhead text-xl md:text-2xl italic mb-8 md:mb-10"
             style={{ color: "hsl(38 64% 95%)", fontWeight: 400 }} 
           >
-           Experience the rich heritage of slow-cooked biryanis, aromatic spices, and 100% Zabiha Halal meats.
+            Experience the rich heritage of slow-cooked biryanis, aromatic spices, and 100% Zabiha Halal meats.
           </motion.p>
+
+          {/* Midnight Biryanis - MOBILE ONLY */}
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.3, duration: 0.5 }}
+            className="md:hidden flex items-center gap-2 mb-6"
+          >
+            <Moon size={14} className="text-[#D4A843]" />
+            <span className="text-[10px] font-bold tracking-[0.2em] text-[#D4A843] uppercase">
+              Midnight Biryanis: Fri-Sat 10PM–3AM
+            </span>
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.6 }}
+            transition={{ delay: 1.4, duration: 0.6 }}
             className="flex flex-col sm:flex-row gap-4"
           >
             <Link to="/menu" className="btn-primary text-center">
@@ -172,8 +235,8 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
         transition={{ 
-          opacity: { delay: 1, duration: 0.8 },
-          scale: { delay: 1, duration: 0.8 },
+          opacity: { delay: 1.6, duration: 0.8 },
+          scale: { delay: 1.6, duration: 0.8 },
           y: { repeat: Infinity, duration: 3.5, ease: "easeInOut" } 
         }}
         className="absolute bottom-6 right-4 lg:bottom-32 lg:right-12 z-20 pointer-events-none"
@@ -188,15 +251,15 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Floating Image Indicator / Dish Name */}
+      {/* RESTORED: Floating Image Indicator / Dish Name */}
       <motion.div 
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="hidden lg:flex absolute bottom-12 right-12 items-center gap-4 z-10"
+        transition={{ delay: 1.8, duration: 0.8 }}
+        className="hidden lg:flex absolute bottom-12 right-12 items-center gap-4 z-10 bg-black/10 backdrop-blur-sm p-3 rounded-2xl border border-white/5"
       >
         <div className="flex flex-col items-end">
-          <span className="font-label text-xs tracking-widest" style={{ color: "hsl(var(--gold))" }}>FEATURING</span>
+          <span className="font-label text-[10px] tracking-[0.2em] text-[#D4A843] uppercase">FEATURING</span>
           <AnimatePresence mode="wait">
             <motion.span 
               key={currentImgIndex}
@@ -204,37 +267,20 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.4 }}
-              className="font-display text-lg text-white drop-shadow-md"
+              className="font-display text-base text-white font-medium"
             >
               {heroItems[currentImgIndex].name}
             </motion.span>
           </AnimatePresence>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1.5">
             {heroItems.map((_, i) => (
               <div 
                 key={i} 
-                className={`h-1 rounded-full transition-all duration-500 ${currentImgIndex === i ? "w-6 bg-white" : "w-2 bg-white/30"}`}
+                className={`h-1 rounded-full transition-all duration-500 ${currentImgIndex === i ? "w-6 bg-[#D4A843]" : "w-2 bg-white/30"}`}
               />
             ))}
         </div>
-      </motion.div>
-
-      {/* Scroll Hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
-        style={{ color: "hsl(var(--gold) / 0.7)" }}
-      >
-        <span className="font-label text-xs tracking-widest">SCROLL</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-        >
-          <ChevronDown className="w-4 h-4" />
-        </motion.div>
       </motion.div>
     </section>
   );
