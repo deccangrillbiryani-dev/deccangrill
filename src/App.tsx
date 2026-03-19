@@ -7,6 +7,8 @@ import Index from "./pages/Index.tsx";
 import MenuPage from "./pages/MenuPage.tsx";
 import CateringPage from "./pages/CateringPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import ScrollToTop from "@/components/ScrollToTop";
+import ScrollReset from "@/components/ScrollReset"; // 1. Import the new component
 
 const queryClient = new QueryClient();
 
@@ -16,6 +18,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollReset /> {/* 2. Place it here to automatically reset scroll on every navigation */}
+        <ScrollToTop /> {/* This is your floating UI button */}
+        
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/menu" element={<MenuPage />} />
