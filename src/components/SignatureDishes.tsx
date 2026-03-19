@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, CalendarDays, MousePointer2 } from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 
 // Updated dishes with specific items and prices
 const dishes = [
@@ -59,7 +59,8 @@ function DishCard({ dish }: { dish: typeof dishes[0] }) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative flex-shrink-0 w-[280px] md:w-[320px] h-[400px] rounded-3xl overflow-hidden cursor-pointer group bg-white"
+      // FIX: Changed mobile width to 80vw to guarantee the next card peeks into view
+      className="relative flex-shrink-0 w-[80vw] sm:w-[280px] md:w-[320px] h-[400px] rounded-3xl overflow-hidden cursor-pointer group bg-white"
       style={{
         border: "1px solid rgba(221, 110, 48, 0.15)", // Soft orange border
         boxShadow: "0 20px 40px rgba(44, 26, 8, 0.08)", // Soft brown shadow
@@ -113,7 +114,6 @@ function DishCard({ dish }: { dish: typeof dishes[0] }) {
 export default function SignatureDishes() {
   return (
     <section 
-      // FIX: Removed py-24 top padding, kept pb-24 for the bottom
       className="pt-0 pb-24 overflow-hidden relative" 
       style={{ backgroundColor: "#F9F6F0", fontFamily: "'Inter', 'SF Pro Display', sans-serif" }} // Warm Cream Background
     >
@@ -138,17 +138,14 @@ export default function SignatureDishes() {
         
         {/* Horizontal Scroll for Cards */}
         <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          {dishes.map((dish, i) => (
-            <motion.div
+          {dishes.map((dish) => (
+            // FIX: Removed motion.div animation here so items are instantly visible for the mobile horizontal scroll
+            <div
               key={dish.name}
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
               className="snap-center md:snap-start first:pl-4 md:first:pl-0 last:pr-4 md:last:pr-0"
             >
               <DishCard dish={dish} />
-            </motion.div>
+            </div>
           ))}
         </div>
 
