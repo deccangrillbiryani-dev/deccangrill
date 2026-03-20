@@ -141,7 +141,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.6 }}
         // FIX: Changed from top-24 to top-28 to give more space below the logo
-        className="absolute top-28 left-0 w-full px-6 z-20 md:hidden flex justify-between items-start"
+        className="absolute top-32 left-0 w-full px-6 z-20 md:hidden flex justify-between items-start"
       >
         {/* Left: Delivery Section */}
         <div className="flex flex-col gap-2">
@@ -172,7 +172,7 @@ export default function Hero() {
 
       {/* Content */}
       {/* FIX: Reduced top padding from pt-[180px] to pt-[160px] to close the gap without overlapping */}
-      <div className="relative z-10 container mx-auto px-6 md:px-8 pt-[80px] md:pt-32">
+      <div className="relative z-10 container mx-auto px-6 md:px-8 pt-[120px] md:pt-32">
         <div className="max-w-4xl"> 
           
           {/* Haleem 365 Days - ABOVE LABEL */}
