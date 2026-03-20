@@ -168,7 +168,8 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 md:px-8 pt-24 md:pt-32">
-        <div className="max-w-4xl pr-28 md:pr-0"> {/* Added right padding on mobile so text doesn't overlap the buttons */}
+        {/* FIX: Increased pr-[150px] on mobile to guarantee text never overlaps the delivery buttons */}
+        <div className="max-w-4xl pr-[150px] md:pr-0"> 
           
           {/* Haleem 365 Days - ABOVE LABEL */}
           <motion.div
