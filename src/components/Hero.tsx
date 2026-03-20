@@ -172,7 +172,7 @@ export default function Hero() {
 
       {/* Content */}
       {/* FIX: Reduced top padding from pt-[180px] to pt-[160px] to close the gap without overlapping */}
-      <div className="relative z-10 container mx-auto px-6 md:px-8 pt-[120px] md:pt-32">
+      <div className="relative z-10 container mx-auto px-6 md:px-8 pt-[80px] md:pt-32">
         <div className="max-w-4xl"> 
           
           {/* Haleem 365 Days - ABOVE LABEL */}
