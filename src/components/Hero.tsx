@@ -135,39 +135,44 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* MOBILE ONLY: Top Right Compact Action Center */}
+      {/* MOBILE ONLY: Horizontal Compact Action Center */}
       <motion.div 
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute top-24 right-4 z-20 md:hidden flex flex-col gap-3 items-end w-[130px]"
+        // FIX: Changed from top-24 to top-28 to give more space below the logo
+        className="absolute top-28 left-0 w-full px-6 z-20 md:hidden flex justify-between items-start"
       >
-        {/* Mobile Number (Separate) */}
-        <a href="tel:+14695739471" 
-           className="w-full bg-black/30 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold py-2 rounded-xl shadow-md text-center flex justify-center items-center gap-1.5 active:bg-white/20 transition-colors">
-          <Phone size={10} className="text-[#D4A843]" /> +1 (469) 573-9471
-        </a>
-
-        {/* Delivery Box */}
-        <div className="w-full flex flex-col gap-2 items-end bg-black/20 p-3 rounded-2xl border border-white/5 backdrop-blur-sm">
-          <span className="text-[9px] font-bold tracking-widest text-[#D4A843] uppercase flex items-center justify-end w-full gap-1.5 mb-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-pulse"></span> Delivery
+        {/* Left: Delivery Section */}
+        <div className="flex flex-col gap-2">
+          <span className="text-[10px] font-bold tracking-widest text-[#D4A843] uppercase flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-pulse"></span> Order Delivery
           </span>
-          <a href="https://www.order.store/store/deccan-grill-plano/GAad6lQnRYmLGp3g3ahXAA" target="_blank" rel="noopener noreferrer" 
-             className="w-full bg-[#D97706] text-white text-[10px] font-bold py-1.5 rounded-lg shadow-md text-center active:scale-95 transition-transform">
-            Uber Eats
-          </a>
-          <a href="https://order.online/business/deccan-grill-plano-13666801" target="_blank" rel="noopener noreferrer" 
-             className="w-full bg-[#D97706] text-white text-[10px] font-bold py-1.5 rounded-lg shadow-md text-center active:scale-95 transition-transform">
-            DoorDash
-          </a>
+          <div className="flex gap-2">
+            <a href="https://www.order.store/store/deccan-grill-plano/GAad6lQnRYmLGp3g3ahXAA" target="_blank" rel="noopener noreferrer" 
+               className="bg-[#D97706] text-white text-[10px] font-bold px-4 py-2 rounded-lg shadow-md active:scale-95 transition-transform text-center">
+              Uber Eats
+            </a>
+            <a href="https://order.online/business/deccan-grill-plano-13666801" target="_blank" rel="noopener noreferrer" 
+               className="bg-[#D97706] text-white text-[10px] font-bold px-4 py-2 rounded-lg shadow-md active:scale-95 transition-transform text-center">
+              DoorDash
+            </a>
+          </div>
         </div>
+
+        {/* Right: Mobile Number */}
+        <a href="tel:+14695739471" 
+           // FIX: Changed label to full number and added whitespace-nowrap
+           className="bg-black/30 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold px-2 py-2 rounded-lg shadow-md flex items-center gap-1.5 active:bg-white/20 transition-colors mt-0.5 whitespace-nowrap">
+          <Phone size={12} className="text-[#D4A843]" /> +1 (469) 573-9471
+        </a>
       </motion.div>
 
       <SteamParticles />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-[260px] md:pt-32">
+      {/* FIX: Reduced top padding from pt-[180px] to pt-[160px] to close the gap without overlapping */}
+      <div className="relative z-10 container mx-auto px-6 md:px-8 pt-[120px] md:pt-32">
         <div className="max-w-4xl"> 
           
           {/* Haleem 365 Days - ABOVE LABEL */}
