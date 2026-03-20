@@ -167,9 +167,8 @@ export default function Hero() {
       <SteamParticles />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-24 md:pt-32">
-        {/* FIX: Increased pr-[150px] on mobile to guarantee text never overlaps the delivery buttons */}
-        <div className="max-w-4xl pr-[150px] md:pr-0"> 
+      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-[260px] md:pt-32">
+        <div className="max-w-4xl"> 
           
           {/* Haleem 365 Days - ABOVE LABEL */}
           <motion.div
@@ -211,7 +210,6 @@ export default function Hero() {
                 </motion.span>
               ))}
             </div>
-            {/* FIX: Changed items-center to items-baseline so "Story" doesn't float upwards on mobile */}
             <div className="flex flex-wrap items-baseline">
                {["tells", "a"].map((word, i) => (
                 <motion.span
@@ -224,7 +222,6 @@ export default function Hero() {
                   {word}
                 </motion.span>
               ))}
-              {/* FIX: Reduced pb-4 to pb-2 to fix the 'y' clipping while keeping spacing clean */}
               <motion.span
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -273,10 +270,10 @@ export default function Hero() {
             transition={{ delay: 1.4, duration: 0.6 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Link to="/menu" className="btn-primary text-center">
+            <Link to="/menu" className="btn-primary text-center flex justify-center items-center w-[200px]">
               View Our Menu
             </Link>
-            <Link to="/catering" className="btn-ghost-gold text-center">
+            <Link to="/catering" className="btn-ghost-gold text-center flex justify-center items-center w-[200px]">
               Book Catering
             </Link>
           </motion.div>
@@ -292,7 +289,7 @@ export default function Hero() {
           scale: { delay: 1.6, duration: 0.8 },
           y: { repeat: Infinity, duration: 3.5, ease: "easeInOut" } 
         }}
-        className="absolute bottom-6 right-4 lg:bottom-32 lg:right-12 z-20 pointer-events-none"
+        className="absolute bottom-6 right-4 lg:bottom-44 lg:right-12 z-20 pointer-events-none"
       >
         <div className="relative">
           <div className="absolute inset-0 bg-white/10 rounded-full blur-md animate-pulse" />
