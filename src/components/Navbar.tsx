@@ -77,7 +77,8 @@ export default function Navbar() {
                 {link.href.includes("#") ? (
                   <button
                     onClick={() => handleAnchorClick(link.href)}
-                    className="font-body text-sm font-medium transition-colors duration-200 relative group"
+                    // CHANGED: Increased text size from text-sm to text-base and made font-bold
+                    className="font-body text-base font-bold transition-colors duration-200 relative group"
                     style={{ color: desktopTextColor }}
                   >
                     {link.label}
@@ -87,7 +88,8 @@ export default function Navbar() {
                 ) : (
                   <Link
                     to={link.href}
-                    className="font-body text-sm font-medium transition-colors duration-200 relative group"
+                    // CHANGED: Increased text size from text-sm to text-base and made font-bold
+                    className="font-body text-base font-bold transition-colors duration-200 relative group"
                     style={{ color: location.pathname === link.href ? "#D97706" : desktopTextColor }}
                   >
                     {link.label}
@@ -101,10 +103,11 @@ export default function Navbar() {
 
           <a
             href="tel:+14695739471"
-            className="hidden md:flex items-center gap-2 font-body text-sm font-medium transition-all duration-200 hover:scale-105"
+            // CHANGED: Increased text size from text-sm to text-base and made font-bold
+            className="hidden md:flex items-center gap-2 font-body text-base font-bold transition-all duration-200 hover:scale-105"
             style={{ color: isDarkBg ? "hsl(var(--gold))" : "#D97706" }}
           >
-            <Phone className="w-4 h-4" />
+            <Phone className="w-5 h-5" />
             +1 (469) 573-9471
           </a>
 
@@ -150,10 +153,10 @@ export default function Navbar() {
             <div className="shimmer-divider my-8" />
             <a
               href="tel:+14695739471"
-              className="flex items-center gap-3 font-body text-lg font-medium"
+              className="flex items-center gap-3 font-body text-xl font-bold"
               style={{ color: "hsl(var(--gold))" }}
             >
-              <Phone className="w-5 h-5" />
+              <Phone className="w-6 h-6" />
               +1 (469) 573-9471
             </a>
           </motion.div>

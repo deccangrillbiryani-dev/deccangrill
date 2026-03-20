@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Moon, Sparkles } from "lucide-react";
+import { ChevronDown, Moon, Sparkles, Phone } from "lucide-react";
 
 // The new dynamic image data
 const heroItems = [
@@ -89,22 +89,43 @@ export default function Hero() {
       <div className="absolute inset-0"
         style={{ background: "linear-gradient(160deg, hsl(28 36% 7% / 0.95) 0%, hsl(28 36% 7% / 0.80) 50%, hsl(28 36% 7% / 0.60) 100%)" }} />
 
-      {/* Midnight Biryanis Badge - DESKTOP ONLY */}
+      {/* DESKTOP ONLY: Top Right Action Center (Order + Midnight) */}
       <motion.div 
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute top-24 right-8 z-20 hidden md:block"
+        className="absolute top-24 right-4 md:right-8 z-20 hidden md:flex flex-col gap-4 items-end"
       >
+        {/* Order Online Box */}
+        <div className="relative group">
+          <div className="absolute inset-0 bg-black/40 rounded-2xl blur-xl" />
+          <div className="relative bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl flex flex-col gap-3 shadow-2xl">
+            <span className="text-[10px] font-bold tracking-[0.2em] text-[#D4A843] uppercase text-center flex items-center justify-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#D97706] animate-pulse"></span> Order Delivery
+            </span>
+            <div className="flex gap-2">
+              <a href="https://www.order.store/store/deccan-grill-plano/GAad6lQnRYmLGp3g3ahXAA" target="_blank" rel="noopener noreferrer" 
+                 className="bg-[#D97706] text-white text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-[#b85723] transition-all hover:scale-105 shadow-lg text-center">
+                Uber Eats
+              </a>
+              <a href="https://order.online/business/deccan-grill-plano-13666801" target="_blank" rel="noopener noreferrer" 
+                 className="bg-[#D97706] text-white text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-[#b85723] transition-all hover:scale-105 shadow-lg text-center">
+                DoorDash
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Midnight Biryanis Badge */}
         <div className="relative group cursor-default">
           <div className="absolute inset-0 bg-[#D97706]/20 rounded-2xl blur-xl" />
           <motion.div 
-            animate={{ y: [0, -12, 0] }}
+            animate={{ y: [0, -6, 0] }}
             transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="relative bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl flex items-center gap-4"
+            className="relative bg-white/5 backdrop-blur-md border border-white/10 p-3 px-4 rounded-2xl flex items-center gap-4 shadow-2xl"
           >
             <div className="bg-[#D97706]/20 p-2 rounded-xl">
-              <Moon size={24} className="text-[#D4A843]" />
+              <Moon size={20} className="text-[#D4A843]" />
             </div>
             <div>
               <p className="text-[10px] font-bold tracking-[0.2em] text-[#D4A843] uppercase">Midnight Biryanis</p>
@@ -114,11 +135,35 @@ export default function Hero() {
         </div>
       </motion.div>
 
+      {/* MOBILE ONLY: Top Right Compact Action Center */}
+      <motion.div 
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
+        className="absolute top-24 right-4 z-20 md:hidden flex flex-col gap-2 items-end bg-black/20 p-3 rounded-2xl border border-white/5 backdrop-blur-sm w-[130px]"
+      >
+        <span className="text-[9px] font-bold tracking-widest text-[#D4A843] uppercase flex items-center justify-end w-full gap-1.5 mb-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-pulse"></span> Delivery
+        </span>
+        <a href="https://www.order.store/store/deccan-grill-plano/GAad6lQnRYmLGp3g3ahXAA" target="_blank" rel="noopener noreferrer" 
+           className="w-full bg-[#D97706] text-white text-[10px] font-bold py-1.5 rounded-lg shadow-md text-center active:scale-95 transition-transform">
+          Uber Eats
+        </a>
+        <a href="https://order.online/business/deccan-grill-plano-13666801" target="_blank" rel="noopener noreferrer" 
+           className="w-full bg-[#D97706] text-white text-[10px] font-bold py-1.5 rounded-lg shadow-md text-center active:scale-95 transition-transform">
+          DoorDash
+        </a>
+        <a href="tel:+14695739471" 
+           className="w-full mt-1 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold py-1.5 rounded-lg shadow-md text-center flex justify-center items-center gap-1.5 active:bg-white/20 transition-colors">
+          <Phone size={10} className="text-[#D4A843]" /> Call Us
+        </a>
+      </motion.div>
+
       <SteamParticles />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-24">
-        <div className="max-w-4xl">
+      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-24 md:pt-32">
+        <div className="max-w-4xl pr-28 md:pr-0"> {/* Added right padding on mobile so text doesn't overlap the buttons */}
           
           {/* Haleem 365 Days - ABOVE LABEL */}
           <motion.div
@@ -145,7 +190,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Hero Headline - Balanced Typography */}
-          <h1 className="font-display font-bold mb-6 leading-[1.1] md:leading-none flex flex-col"
+          <h1 className="font-display font-bold mb-4 md:mb-6 leading-[1.1] md:leading-none flex flex-col"
             style={{ fontSize: "clamp(2.8rem, 8vw, 5.5rem)", letterSpacing: "-0.03em", color: "hsl(38 64% 95%)" }}>
             <div className="flex flex-wrap">
               {["Where", "every", "bite"].map((word, i) => (
@@ -160,7 +205,8 @@ export default function Hero() {
                 </motion.span>
               ))}
             </div>
-            <div className="flex flex-wrap items-center">
+            {/* FIX: Changed items-center to items-baseline so "Story" doesn't float upwards on mobile */}
+            <div className="flex flex-wrap items-baseline">
                {["tells", "a"].map((word, i) => (
                 <motion.span
                   key={i}
@@ -172,11 +218,12 @@ export default function Hero() {
                   {word}
                 </motion.span>
               ))}
+              {/* FIX: Reduced pb-4 to pb-2 to fix the 'y' clipping while keeping spacing clean */}
               <motion.span
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.0, duration: 0.8 }}
-                className="inline-block"
+                className="inline-block pb-2 overflow-visible"
                 style={{
                   background: "linear-gradient(135deg, hsl(var(--gold)), hsl(var(--primary)))",
                   WebkitBackgroundClip: "text",
@@ -189,23 +236,23 @@ export default function Hero() {
             </div>
           </h1>
 
-          {/* Subtext */}
+          {/* Subtext - HIDDEN ON MOBILE */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="font-subhead text-xl md:text-2xl italic mb-8 md:mb-10"
+            className="hidden md:block font-subhead text-xl md:text-2xl italic mb-10"
             style={{ color: "hsl(38 64% 95%)", fontWeight: 400 }} 
           >
             Experience the rich heritage of slow-cooked biryanis, aromatic spices, and 100% Zabiha Halal meats.
           </motion.p>
 
-          {/* Midnight Biryanis - MOBILE ONLY */}
+          {/* Midnight Biryanis - MOBILE ONLY (Sits above CTA buttons) */}
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3, duration: 0.5 }}
-            className="md:hidden flex items-center gap-2 mb-6"
+            className="md:hidden flex items-center gap-2 mb-6 mt-4"
           >
             <Moon size={14} className="text-[#D4A843]" />
             <span className="text-[10px] font-bold tracking-[0.2em] text-[#D4A843] uppercase">
@@ -251,15 +298,15 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* RESTORED: Floating Image Indicator / Dish Name */}
+      {/* Floating Image Indicator / Dish Name */}
       <motion.div 
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.8, duration: 0.8 }}
-        className="hidden lg:flex absolute bottom-12 right-12 items-center gap-4 z-10 bg-black/10 backdrop-blur-sm p-3 rounded-2xl border border-white/5"
+        className="hidden lg:flex absolute bottom-12 right-12 items-center justify-center gap-4 z-10 bg-black/10 backdrop-blur-sm p-4 rounded-2xl border border-white/5"
       >
-        <div className="flex flex-col items-end">
-          <span className="font-label text-[10px] tracking-[0.2em] text-[#D4A843] uppercase">FEATURING</span>
+        <div className="flex flex-col items-center">
+          <span className="text-[10px] tracking-[0.2em] text-[#D4A843] uppercase mb-1" style={{ fontFamily: "'Calibri', sans-serif" }}>FEATURING</span>
           <AnimatePresence mode="wait">
             <motion.span 
               key={currentImgIndex}
@@ -267,20 +314,37 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.4 }}
-              className="font-display text-base text-white font-medium"
+              className="font-display text-base text-white font-medium text-center"
             >
               {heroItems[currentImgIndex].name}
             </motion.span>
           </AnimatePresence>
+          <div className="flex gap-1.5 mt-3">
+              {heroItems.map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`h-1 rounded-full transition-all duration-500 ${currentImgIndex === i ? "w-6 bg-[#D4A843]" : "w-2 bg-white/30"}`}
+                />
+              ))}
+          </div>
         </div>
-        <div className="flex gap-1.5">
-            {heroItems.map((_, i) => (
-              <div 
-                key={i} 
-                className={`h-1 rounded-full transition-all duration-500 ${currentImgIndex === i ? "w-6 bg-[#D4A843]" : "w-2 bg-white/30"}`}
-              />
-            ))}
-        </div>
+      </motion.div>
+
+      {/* Scroll Hint - HIDDEN ON MOBILE TO PREVENT OVERLAPPING */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.2, duration: 0.8 }}
+        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1"
+        style={{ color: "hsl(var(--gold) / 0.7)" }}
+      >
+        <span className="text-[10px] font-bold tracking-[0.3em] uppercase" style={{ fontFamily: "'Poppins', sans-serif" }}>SCROLL</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-4 h-4" />
+        </motion.div>
       </motion.div>
     </section>
   );

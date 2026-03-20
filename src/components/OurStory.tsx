@@ -31,7 +31,13 @@ export default function OurStory() {
                 border: "1px solid hsl(var(--gold) / 0.3)",
                 boxShadow: "var(--shadow-gold)",
               }}>
-              <p className="font-label text-xs tracking-widest mb-1" style={{ color: "hsl(var(--gold))" }}>
+              <p 
+                className="text-xs tracking-widest mb-1 font-bold" 
+                style={{ 
+                  color: "hsl(var(--gold))", 
+                  fontFamily: "'Calibri', 'Candara', 'Segoe UI', 'Optima', Arial, sans-serif" 
+                }}
+              >
                 SINCE
               </p>
               <p className="font-display font-bold text-3xl" style={{ color: "hsl(var(--primary-foreground))" }}>
