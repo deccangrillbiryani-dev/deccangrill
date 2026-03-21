@@ -163,7 +163,7 @@ export default function Hero() {
         {/* Right: Mobile Number */}
         <a href="tel:+14695739471" 
            // FIX: Changed label to full number and added whitespace-nowrap
-           className="bg-black/30 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold px-2 py-2 rounded-lg shadow-md flex items-center gap-1.5 active:bg-white/20 transition-colors mt-0.5 whitespace-nowrap">
+           className="bg-black/30 backdrop-blur-md border border-white/10 text-white text-[12px] font-bold px-2 py-2 rounded-lg shadow-md flex items-center gap-1.5 active:bg-white/20 transition-colors mt-0.5 whitespace-nowrap">
           <Phone size={12} className="text-[#D4A843]" /> +1 (469) 573-9471
         </a>
       </motion.div>
